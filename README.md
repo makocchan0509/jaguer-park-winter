@@ -1,0 +1,13 @@
+# コーディングライブ用の資材
+- Terraform
+  - Google Cloud
+    - Network (VPC/Subnet/FW)
+    - GKE
+    - ArtifactRegistry
+    - GCS
+    - IAM (WorkloadIdentity)
+- Kubernetes
+  - Mediamtx
+  - ffmpeg + GCSFuse
+- ffmpeg
+  - Dockerfile
