@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    gke-gcsfuse/volumes: "true"
+    gke-gcsfuse/cpu-request: 1000m
+    gke-gcsfuse/memory-request: 3Gi
+  labels:
+    run: ffmpeg
+  name: ffmpeg
+spec:
+  serviceAccountName: mediamtx
+  containers:
+  - image: asia-northeast1-docker.pkg.dev/ca-masem-test/jaguer-winter/ffmpeg/ffmpeg:v0.0.1
+    command : ["/bin/sh","-c","sleep 100000"]
+    name: ffmpeg
+    volumeMounts:
+      - name: gcs-fuse-csi-static
+        mountPath: /data
+  volumes:
+    - name: gcs-fuse-csi-static
+      persistentVolumeClaim:
+        claimName: gcs-fuse-csi-static-pvc
