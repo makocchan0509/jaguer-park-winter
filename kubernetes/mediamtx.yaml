@@ -21,4 +21,7 @@ spec:
         env:
           - name: MTX_PROTOCOLS
             value: 'tcp'
-        resources: {}
+        resources:
+          requests:
+            cpu: 2000m
+            memory: 3Gi

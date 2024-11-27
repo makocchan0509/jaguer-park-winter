@@ -14,6 +14,10 @@ spec:
   - image: asia-northeast1-docker.pkg.dev/ca-masem-test/jaguer-winter/ffmpeg/ffmpeg:v0.0.1
     command : ["/bin/sh","-c","sleep 100000"]
     name: ffmpeg
+    resources:
+      requests:
+        cpu: 2000m
+        memory: 3Gi
     volumeMounts:
       - name: gcs-fuse-csi-static
         mountPath: /data
