@@ -8,6 +8,7 @@ metadata:
   labels:
     run: ffmpeg
   name: ffmpeg
+  namespace: cooking
 spec:
   serviceAccountName: mediamtx
   containers:
@@ -16,7 +17,7 @@ spec:
     name: ffmpeg
     resources:
       requests:
-        cpu: 2000m
+        cpu: 1000m
         memory: 3Gi
     volumeMounts:
       - name: gcs-fuse-csi-static

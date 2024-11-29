@@ -8,23 +8,21 @@ terraform {
 }
 
 provider "google" {
-  project = "ca-masem-test"
+  project = "jaguer-park-champion-demo"
   region  = "asia-northeast1"
 }
 
 data "google_project" "main" {
 }
 
-resource "google_storage_bucket" "static-site" {
-  name                        = "${data.google_project.main.project_id}-mediamtx"
-  location                    = "asia-northeast1"
-  uniform_bucket_level_access = true
-}
-
 resource "google_artifact_registry_repository" "main" {
   location      = "asia-northeast1"
   repository_id = "jaguer-winter"
   format        = "DOCKER"
+}
+
+resource "google_compute_address" "ip_address" {
+  name = "mediamtx"
 }
 
 resource "google_compute_network" "main" {
@@ -59,6 +57,8 @@ resource "google_compute_firewall" "default" {
   source_ranges = [
     "0.0.0.0/0"
   ]
+
+  disabled = true
 }
 
 resource "google_container_cluster" "main" {
@@ -79,6 +79,8 @@ resource "google_project_iam_binding" "main" {
   role    = "roles/storage.admin"
   members = [
     "principal://iam.googleapis.com/projects/${data.google_project.main.number}/locations/global/workloadIdentityPools/${data.google_project.main.project_id}.svc.id.goog/subject/ns/default/sa/mediamtx",
+    "principal://iam.googleapis.com/projects/${data.google_project.main.number}/locations/global/workloadIdentityPools/${data.google_project.main.project_id}.svc.id.goog/subject/ns/cooking/sa/mediamtx"
   ]
 }
+
 

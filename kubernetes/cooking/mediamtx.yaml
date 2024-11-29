@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mediamtx
+  name: mediamtx
+  namespace: cooking
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mediamtx
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: mediamtx
+    spec:
+      containers:
+      - image: bluenviron/mediamtx:latest
+        name: mediamtx
+        env:
+          - name: MTX_PROTOCOLS
+            value: 'tcp'
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 3Gi

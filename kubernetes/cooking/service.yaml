@@ -4,6 +4,7 @@ metadata:
   labels:
     app: mediamtx
   name: mediamtx
+  namespace: cooking
   annotations:
     cloud.google.com/l4-rbs: "enabled"
     networking.gke.io/load-balancer-ip-addresses: "mediamtx"
